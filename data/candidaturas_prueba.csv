@@ -1,0 +1,16 @@
+id;titulo;empresa;estado;fechaPostulacion;enlace;notas
+1;Desarrollador Java Junior;Indra;pendiente;20/10/2026;https://www.indracompany.com/empleo/java-junior;Contacto por LinkedIn
+2;Backend Developer Spring Boot;Accenture;pendiente;18/10/2026;https://www.accenture.com/es-es/careers/backend;Pendiente de respuesta de RRHH
+3;Desarrollador Full Stack;Capgemini;pendiente;15/10/2026;https://www.capgemini.com/es-es/empleo/fullstack;Oferta vista en InfoJobs
+4;Junior Software Engineer;Cabify;pendiente;12/10/2026;https://cabify.com/careers/junior-software-engineer;Referido por un compañero
+5;Analista Programador;NTT Data;entrevista;05/10/2026;https://es.nttdata.com/empleo/analista-programador;Entrevista tecnica la semana proxima
+6;Desarrollador Java;Indra;entrevista;28/09/2026;https://www.indracompany.com/empleo/desarrollador-java;Primera entrevista con RRHH superada
+7;Desarrollador Web;Accenture;entrevista;22/09/2026;https://www.accenture.com/es-es/careers/web;Prueba tecnica en Java
+8;Programador Backend;Cabify;entrevista;15/09/2026;https://cabify.com/careers/backend;Entrevista con el equipo de plataforma
+9;Desarrollador Java;NTT Data;rechazado;08/09/2026;https://es.nttdata.com/empleo/java;Piden 3 años de experiencia
+10;Tester QA Automatizacion;Capgemini;rechazado;30/08/2026;https://www.capgemini.com/es-es/empleo/qa;Perfil no ajustado
+11;Becario Desarrollo;Indra;rechazado;25/08/2026;https://www.indracompany.com/empleo/becario;Plazas cubiertas
+12;Desarrollador Multiplataforma;Accenture;rechazado;20/08/2026;https://www.accenture.com/es-es/careers/multiplataforma;Sin feedback
+13;Practicas Desarrollo Java;Capgemini;aceptado;12/08/2026;https://www.capgemini.com/es-es/empleo/practicas-java;Incorporacion en noviembre
+14;Desarrollador Junior;Cabify;aceptado;05/08/2026;https://cabify.com/careers/junior-developer;Oferta aceptada por email
+15;Practicas FCT Desarrollo;NTT Data;aceptado;30/07/2026;https://es.nttdata.com/empleo/practicas-fct;Convenio firmado con el centro
