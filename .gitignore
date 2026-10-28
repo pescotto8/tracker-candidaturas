@@ -1,0 +1,4 @@
+target/
+data/candidaturas.txt
+.idea/
+*.iml
