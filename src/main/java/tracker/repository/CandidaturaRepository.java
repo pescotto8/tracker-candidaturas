@@ -15,10 +15,21 @@ public class CandidaturaRepository {
 
     private final Path archivo;
 
+    /**
+     * Crea el repositorio sobre un archivo de texto.
+     *
+     * @param archivo ruta del archivo de datos; se crea al guardar si no existe
+     */
     public CandidaturaRepository(Path archivo) {
         this.archivo = archivo;
     }
 
+    /**
+     * Lee todas las candidaturas del archivo.
+     *
+     * @return lista modificable; vacía si el archivo no existe
+     * @throws TrackerException si el archivo no se puede leer o tiene líneas inválidas
+     */
     public List<Candidatura> buscarTodas() {
         if (!Files.exists(archivo)) {
             return new ArrayList<>();
@@ -26,6 +37,12 @@ public class CandidaturaRepository {
         return leer(archivo);
     }
 
+    /**
+     * Sustituye el contenido del archivo por las candidaturas indicadas.
+     *
+     * @param candidaturas candidaturas a guardar
+     * @throws TrackerException si no se puede escribir en el archivo
+     */
     public void guardarTodas(List<Candidatura> candidaturas) {
         List<String> lineas = new ArrayList<>();
         lineas.add(CandidaturaCodec.CABECERA);
@@ -41,7 +58,13 @@ public class CandidaturaRepository {
         }
     }
 
-    /** Lee un archivo de candidaturas con el mismo formato (cabecera opcional). */
+    /**
+     * Lee un archivo de candidaturas con el mismo formato (cabecera opcional).
+     *
+     * @param origen archivo a leer
+     * @return candidaturas leídas
+     * @throws TrackerException si el archivo no existe, no se puede leer o tiene líneas inválidas
+     */
     public static List<Candidatura> leer(Path origen) {
         if (!Files.isRegularFile(origen)) {
             throw new TrackerException("Archivo no encontrado: " + origen);

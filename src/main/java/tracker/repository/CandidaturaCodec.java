@@ -18,13 +18,30 @@ public final class CandidaturaCodec {
     private static final DateTimeFormatter FECHA =
             DateTimeFormatter.ofPattern("dd/MM/uuuu").withResolverStyle(ResolverStyle.STRICT);
 
+    /**
+     * Clase de utilidad: no se instancia.
+     */
     private CandidaturaCodec() {
     }
 
+    /**
+     * Indica si una línea es la cabecera del archivo.
+     *
+     * @param linea línea de texto
+     * @return {@code true} si coincide con {@link #CABECERA}
+     */
     public static boolean esCabecera(String linea) {
         return linea.strip().equalsIgnoreCase(CABECERA);
     }
 
+    /**
+     * Convierte una línea del archivo en una candidatura.
+     *
+     * @param linea línea con siete campos separados por punto y coma
+     * @param numeroLinea posición de la línea, usada en los mensajes de error
+     * @return candidatura leída
+     * @throws TrackerException si el número de campos, el ID, el estado o la fecha no son válidos
+     */
     public static Candidatura parsear(String linea, int numeroLinea) {
         String[] campos = linea.split(SEPARADOR, -1);
         if (campos.length != CAMPOS) {
@@ -48,6 +65,12 @@ public final class CandidaturaCodec {
         }
     }
 
+    /**
+     * Convierte una candidatura en una línea del archivo.
+     *
+     * @param c candidatura a guardar
+     * @return línea con los campos separados por punto y coma
+     */
     public static String formatear(Candidatura c) {
         return String.join(SEPARADOR,
                 String.valueOf(c.id()),
@@ -59,6 +82,13 @@ public final class CandidaturaCodec {
                 c.notas());
     }
 
+    /**
+     * Interpreta una fecha con formato dd/MM/yyyy.
+     *
+     * @param texto fecha en texto
+     * @return fecha interpretada
+     * @throws TrackerException si el formato o la fecha no son válidos
+     */
     public static LocalDate parsearFecha(String texto) {
         try {
             return LocalDate.parse(texto.strip(), FECHA);
@@ -67,6 +97,12 @@ public final class CandidaturaCodec {
         }
     }
 
+    /**
+     * Da formato dd/MM/yyyy a una fecha.
+     *
+     * @param fecha fecha a formatear
+     * @return fecha en texto
+     */
     public static String formatearFecha(LocalDate fecha) {
         return FECHA.format(fecha);
     }

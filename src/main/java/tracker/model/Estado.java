@@ -12,11 +12,22 @@ public enum Estado {
     RECHAZADO,
     ACEPTADO;
 
+    /**
+     * Devuelve el estado en minúsculas, tal y como se guarda en el archivo.
+     *
+     * @return etiqueta del estado
+     */
     public String etiqueta() {
         return name().toLowerCase();
     }
 
-    /** Convierte un texto (sin distinguir mayúsculas) en un estado válido. */
+    /**
+     * Convierte un texto (sin distinguir mayúsculas) en un estado válido.
+     *
+     * @param texto nombre del estado
+     * @return estado correspondiente
+     * @throws TrackerException si el texto no corresponde a ningún estado
+     */
     public static Estado desdeTexto(String texto) {
         for (Estado estado : values()) {
             if (estado.etiqueta().equalsIgnoreCase(texto == null ? "" : texto.trim())) {
