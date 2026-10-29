@@ -13,9 +13,17 @@ public final class Main {
 
     private static final String ARCHIVO_POR_DEFECTO = "data/candidaturas.txt";
 
+    /**
+     * Clase de entrada: no se instancia.
+     */
     private Main() {
     }
 
+    /**
+     * Ejecuta una operación y termina con el código de salida correspondiente.
+     *
+     * @param args operación y argumentos de la línea de comandos
+     */
     public static void main(String[] args) {
         String ruta = System.getenv().getOrDefault("TRACKER_DATA", ARCHIVO_POR_DEFECTO);
         CandidaturaService servicio = new CandidaturaService(new CandidaturaRepository(Path.of(ruta)));

@@ -30,13 +30,25 @@ public class Cli {
     private final PrintStream out;
     private final PrintStream err;
 
+    /**
+     * Crea la interfaz de línea de comandos.
+     *
+     * @param servicio lógica de negocio
+     * @param out salida de resultados
+     * @param err salida de errores
+     */
     public Cli(CandidaturaService servicio, PrintStream out, PrintStream err) {
         this.servicio = servicio;
         this.out = out;
         this.err = err;
     }
 
-    /** Ejecuta el comando y devuelve el código de salida (0 correcto, 1 error). */
+    /**
+     * Ejecuta la operación indicada por los argumentos.
+     *
+     * @param args operación seguida de sus argumentos
+     * @return código de salida: 0 si fue correcto, 1 si hubo un error
+     */
     public int ejecutar(String[] args) {
         try {
             if (args.length == 0) {
@@ -59,6 +71,11 @@ public class Cli {
         }
     }
 
+    /**
+     * Muestra las candidaturas en una tabla, con filtros opcionales {@code --estado} y {@code --empresa}.
+     *
+     * @param args argumentos que siguen al nombre de la operación
+     */
     private void listar(String[] args) {
         Map<String, String> opciones = opciones(args, Set.of("estado", "empresa"));
         Estado estado = opciones.containsKey("estado") ? Estado.desdeTexto(opciones.get("estado")) : null;
@@ -76,6 +93,11 @@ public class Cli {
         out.println("Total: " + resultado.size());
     }
 
+    /**
+     * Añade una candidatura a partir de las opciones indicadas.
+     *
+     * @param args argumentos que siguen al nombre de la operación
+     */
     private void anadir(String[] args) {
         Map<String, String> opciones = opciones(args, Set.of("titulo", "empresa", "estado", "fecha", "enlace", "notas"));
         for (String obligatoria : List.of("titulo", "empresa")) {
@@ -92,6 +114,11 @@ public class Cli {
         out.println("Candidatura añadida con ID " + nueva.id());
     }
 
+    /**
+     * Muestra todos los detalles de una candidatura.
+     *
+     * @param args argumentos que siguen al nombre de la operación
+     */
     private void ver(String[] args) {
         Candidatura c = servicio.ver(argumentoId(args, "ver"));
         out.println("ID:          " + c.id());
@@ -103,12 +130,22 @@ public class Cli {
         out.println("Notas:       " + valorOGuion(c.notas()));
     }
 
+    /**
+     * Elimina una candidatura por ID.
+     *
+     * @param args argumentos que siguen al nombre de la operación
+     */
     private void borrar(String[] args) {
         long id = argumentoId(args, "borrar");
         servicio.borrar(id);
         out.println("Candidatura " + id + " eliminada");
     }
 
+    /**
+     * Importa las candidaturas de otro archivo CSV.
+     *
+     * @param args argumentos que siguen al nombre de la operación
+     */
     private void importar(String[] args) {
         if (args.length != 1) {
             throw new TrackerException("Uso: -importar <fichero.csv>");
@@ -117,6 +154,13 @@ public class Cli {
         out.println("Importadas " + total + " candidaturas");
     }
 
+    /**
+     * Convierte los argumentos {@code --clave valor} en un mapa y valida que sean permitidos.
+     *
+     * @param args argumentos de la operación
+     * @param permitidas nombres de opción aceptados, sin los guiones
+     * @return opciones y sus valores
+     */
     private static Map<String, String> opciones(String[] args, Set<String> permitidas) {
         Map<String, String> opciones = new LinkedHashMap<>();
         for (int i = 0; i < args.length; i++) {
@@ -135,6 +179,13 @@ public class Cli {
         return opciones;
     }
 
+    /**
+     * Lee el argumento de un comando que espera un único ID numérico.
+     *
+     * @param args argumentos de la operación
+     * @param comando nombre de la operación, usado en el mensaje de uso
+     * @return ID leído
+     */
     private static long argumentoId(String[] args, String comando) {
         if (args.length != 1) {
             throw new TrackerException("Uso: -" + comando + " <id>");
@@ -146,10 +197,23 @@ public class Cli {
         }
     }
 
+    /**
+     * Acorta un texto con puntos suspensivos si supera el máximo.
+     *
+     * @param texto texto original
+     * @param maximo longitud máxima
+     * @return texto acortado
+     */
     private static String recortar(String texto, int maximo) {
         return texto.length() <= maximo ? texto : texto.substring(0, maximo - 1) + "…";
     }
 
+    /**
+     * Devuelve el texto o un guion si está vacío.
+     *
+     * @param texto texto original
+     * @return texto o {@code "-"}
+     */
     private static String valorOGuion(String texto) {
         return texto.isBlank() ? "-" : texto;
     }
