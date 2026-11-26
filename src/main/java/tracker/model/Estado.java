@@ -1,19 +1,20 @@
 package tracker.model;
 
-import tracker.exception.TrackerException;
-
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
 /** Estado de una candidatura. */
 public enum Estado {
-    PENDIENTE,
-    ENTREVISTA,
-    RECHAZADO,
-    ACEPTADO;
+    PENDIENTE("Pendiente"),
+    ENTREVISTA("Entrevista"),
+    RECHAZADO("Rechazado"),
+    ACEPTADO("Aceptado");
+
+    private final String nombre;
+
+    Estado(String nombre) {
+        this.nombre = nombre;
+    }
 
     /**
-     * Devuelve el estado en minúsculas, tal y como se guarda en el archivo.
+     * Devuelve el estado en minúsculas y sin tildes, tal y como se guarda en la base de datos.
      *
      * @return etiqueta del estado
      */
@@ -22,19 +23,23 @@ public enum Estado {
     }
 
     /**
-     * Convierte un texto (sin distinguir mayúsculas) en un estado válido.
+     * Devuelve el nombre que se muestra al usuario.
+     *
+     * @return nombre del estado
+     */
+    @Override
+    public String toString() {
+        return nombre;
+    }
+
+    /**
+     * Convierte un texto (sin distinguir mayúsculas ni tildes) en un estado válido.
      *
      * @param texto nombre del estado
      * @return estado correspondiente
-     * @throws TrackerException si el texto no corresponde a ningún estado
+     * @throws tracker.exception.TrackerException si el texto no corresponde a ningún estado
      */
     public static Estado desdeTexto(String texto) {
-        for (Estado estado : values()) {
-            if (estado.etiqueta().equalsIgnoreCase(texto == null ? "" : texto.trim())) {
-                return estado;
-            }
-        }
-        String validos = Arrays.stream(values()).map(Estado::etiqueta).collect(Collectors.joining(", "));
-        throw new TrackerException("Estado no válido: '" + texto + "'. Valores posibles: " + validos);
+        return Etiquetas.parsear(Estado.class, texto, "Estado");
     }
 }
