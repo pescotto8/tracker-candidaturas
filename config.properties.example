@@ -1,0 +1,5 @@
+# Copia este archivo como config.properties y ajusta los valores.
+# Las variables de entorno IMPULSO_DB_URL, IMPULSO_DB_USER e IMPULSO_DB_PASSWORD tienen prioridad.
+db.url=jdbc:mysql://localhost:3306/impulso
+db.user=root
+db.password=
