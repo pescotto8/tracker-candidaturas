@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.impulso.controller.MainController" styleClass="app-root">
+    <left>
+        <VBox styleClass="sidebar" prefWidth="220" minWidth="220">
+            <HBox styleClass="brand" alignment="CENTER_LEFT" spacing="10">
+                <Label text="💼" styleClass="brand-logo"/>
+                <Label text="impulso" styleClass="brand-name"/>
+            </HBox>
+            <Label text="ESPACIO DE TRABAJO" styleClass="nav-section"/>
+            <Button fx:id="navOfertas" styleClass="nav-item" maxWidth="Infinity" onAction="#irOfertas">
+                <graphic>
+                    <HBox alignment="CENTER_LEFT" prefWidth="160">
+                        <Label text="Candidaturas"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="badgeOfertas" styleClass="nav-badge"/>
+                    </HBox>
+                </graphic>
+            </Button>
+            <Button fx:id="navEmpresas" styleClass="nav-item" maxWidth="Infinity" onAction="#irEmpresas">
+                <graphic>
+                    <HBox alignment="CENTER_LEFT" prefWidth="160">
+                        <Label text="Empresas"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="badgeEmpresas" styleClass="nav-badge"/>
+                    </HBox>
+                </graphic>
+            </Button>
+            <Button fx:id="navStats" styleClass="nav-item" maxWidth="Infinity" onAction="#irStats">
+                <graphic>
+                    <HBox alignment="CENTER_LEFT" prefWidth="160">
+                        <Label text="Estadísticas"/>
+                    </HBox>
+                </graphic>
+            </Button>
+            <Region VBox.vgrow="ALWAYS"/>
+            <HBox styleClass="user-box" alignment="CENTER_LEFT" spacing="10">
+                <Label text="LM" styleClass="avatar"/>
+                <VBox>
+                    <Label text="Lucía Martín" styleClass="user-name"/>
+                    <Label text="Perfil local" styleClass="user-sub"/>
+                </VBox>
+            </HBox>
+        </VBox>
+    </left>
+    <center>
+        <VBox>
+            <HBox styleClass="topbar" alignment="CENTER_LEFT">
+                <Label fx:id="lblMigas" styleClass="crumbs"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="lblFecha" styleClass="crumbs"/>
+            </HBox>
+            <Separator/>
+            <StackPane fx:id="contentHost" VBox.vgrow="ALWAYS"/>
+        </VBox>
+    </center>
+</BorderPane>
