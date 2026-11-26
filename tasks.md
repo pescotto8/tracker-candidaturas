@@ -2,30 +2,16 @@
 
 Código generado con ayuda de Claude (Anthropic) y revisado por el equipo. Cada tarea va en su rama y se integra en `main` con pull request. Base de datos: MySQL.
 
-## Acceso a Datos (Pablo)
+| Rama | Responsable | Contenido |
+|------|-------------|-----------|
+| feature/v2-base-datos | Pablo | schema.sql inicial, driver MySQL, configuración externalizada (hecho, sustituido después) |
+| feature/v2-modelo | Pablo | Modelo inicial de empresas, ofertas y entrevistas (hecho, sustituido después) |
+| feature/v2-repositorios | Pablo | Primeros repositorios JDBC con filtros y JOIN (hecho, sustituido después) |
+| feature/v2-servicios | Pablo | Primeros servicios, validaciones e importación (hecho, sustituido después) |
+| refactor/retirar-v1 | Pablo | Eliminar la CLI y el código anterior |
+| feature/v2-ui | David | Aplicación JavaFX: pantallas FXML, controladores, repositorios y servicios |
+| feature/v2-importador-csv | Pablo | Esquema idempotente, importación del CSV de la v1.0 sin duplicados, configuración |
+| feature/v2-tests | Pablo | Tests de validaciones e importación |
+| docs/readme-v2 | Pablo y David | README y tabla de contribuciones |
 
-| Rama | Contenido |
-|------|-----------|
-| feature/v2-base-datos | schema.sql, driver MySQL, configuración externalizada, Database y transacciones |
-| feature/v2-modelo | Empresa, Oferta, Entrevista y sus enums |
-| feature/v2-repositorios | Repositorios JDBC, filtros combinados, JOIN, cambio de estado |
-| feature/v2-servicios | Servicios, validaciones, importación del CSV y operaciones transaccionales |
-| feature/v2-tests-datos | Tests con JUnit 5, Mockito y H2 |
-| refactor/retirar-cli | Eliminar la CLI y el repositorio de archivos de la v1.0 |
-
-## Desarrollo de Interfaces (David)
-
-| Rama | Contenido |
-|------|-----------|
-| feature/v2-ui-base | JavaFX en el pom, MainApp, navegación con FXMLLoader, estilos del manual, barra lateral |
-| feature/v2-ui-ofertas | Listado con filtros, detalle y formulario de oferta |
-| feature/v2-ui-empresas | Listado y formulario de empresa |
-| feature/v2-ui-entrevistas | Panel de entrevistas en el detalle y formulario |
-
-## Cierre
-
-| Rama | Contenido |
-|------|-----------|
-| docs/readme-v2 | README con instrucciones de la v2.0 y tabla de contribuciones |
-
-Después: vídeo de la aplicación JavaFX y tag `v2.0` en `main`.
+Después: vídeo de la aplicación y tag `v2.0` en `main`.
