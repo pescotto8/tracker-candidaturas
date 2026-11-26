@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -106,6 +107,20 @@ public class OfertaRepository {
                 }
             }
             return out;
+        }
+    }
+
+    /** Indica si la empresa ya tiene una candidatura con ese título y esa fecha de postulación. */
+    public boolean existe(Connection c, int idEmpresa, String titulo, LocalDate fechaPostulacion) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM oferta WHERE id_empresa = ? AND LOWER(titulo) = LOWER(?) AND fecha_postulacion = ?";
+        try (PreparedStatement ps = c.prepareStatement(sql)) {
+            ps.setInt(1, idEmpresa);
+            ps.setString(2, titulo.trim());
+            ps.setDate(3, Date.valueOf(fechaPostulacion));
+            try (ResultSet rs = ps.executeQuery()) {
+                rs.next();
+                return rs.getInt(1) > 0;
+            }
         }
     }
 

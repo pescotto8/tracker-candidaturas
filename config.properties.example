@@ -1,5 +1,11 @@
-# Copia este archivo como config.properties y ajusta los valores.
-# Las variables de entorno IMPULSO_DB_URL, IMPULSO_DB_USER e IMPULSO_DB_PASSWORD tienen prioridad.
+# Copia este archivo como config.properties (no se sube a Git) y ajusta los valores.
+# Cada clave puede sustituirse con las variables de entorno IMPULSO_DB_URL, IMPULSO_DB_USER e IMPULSO_DB_PASSWORD.
 db.url=jdbc:mysql://localhost:3306/impulso
 db.user=root
 db.password=
+
+# Candidaturas por página en el listado
+ui.pageSize=7
+
+# Carpeta y archivo que propone el selector al importar el CSV
+import.csv=data/candidaturas_prueba.csv

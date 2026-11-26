@@ -233,7 +233,7 @@ public class OfertaListController {
 
     @FXML
     private void importarCsv() {
-        Path defecto = Path.of(Config.get("import.csv", "data/candidaturas_v1.csv"));
+        Path defecto = Path.of(Config.get("import.csv", "data/candidaturas_prueba.csv"));
         FileChooser fc = new FileChooser();
         fc.setTitle("Importar candidaturas desde CSV");
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV", "*.csv"));
@@ -248,7 +248,8 @@ public class OfertaListController {
         try {
             CsvImporter.Resultado r = new CsvImporter().importar(f.toPath());
             Dialogs.info("Importación completada",
-                    r.ofertas() + " candidaturas importadas y " + r.empresasNuevas() + " empresas nuevas.");
+                    r.ofertas() + " candidaturas importadas y " + r.empresasNuevas() + " empresas nuevas."
+                            + (r.omitidas() > 0 ? " " + r.omitidas() + " ya existían y se han omitido." : ""));
             Navigator.ofertas();
         } catch (DataAccessException e) {
             Dialogs.error("No se pudo importar el CSV", e.getMessage());
